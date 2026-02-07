@@ -5,8 +5,16 @@ const QuizManager = {
     onComplete: null,
 
     start(lesson, callback) {
+        // dynamic generation
+        let dynamicQuestions = [];
+        if (lesson.generators) {
+            lesson.generators.forEach(gen => {
+                dynamicQuestions = dynamicQuestions.concat(gen(5)); // Generate 5 of each type
+            });
+        }
+
         // Randomize questions
-        this.currentQuestions = [...lesson.questions]
+        this.currentQuestions = [...lesson.questions, ...dynamicQuestions]
             .sort(() => Math.random() - 0.5)
             .slice(0, 10); // Take max 10 random questions
 
