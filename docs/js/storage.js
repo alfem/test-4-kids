@@ -11,6 +11,16 @@ const StorageManager = {
         this.updateUI();
     },
 
+    saveName(name) {
+        const data = this.getData();
+        data.userName = name;
+        this.saveData(data);
+    },
+
+    getName() {
+        return this.getData().userName || null;
+    },
+
     addStars(count) {
         const data = this.getData();
         data.totalStars += count;

@@ -71,6 +71,26 @@ function generateFrenchSequenceQuestions(count) {
     return questions;
 }
 
+function generateFrenchTranslationQuestions(count) {
+    const questions = [];
+    for (let i = 0; i < count; i++) {
+        // Translation: Un -> One (but in Spanish context: Un -> Uno?)
+        // The app is in Spanish. "Un" -> "Uno" or "1"?
+        // Let's ask to write the NUMBER in French given the digit.
+        // ex: "Escribe en francés: 5" -> "Cinq"
+
+        const num = Math.floor(Math.random() * 20) + 1; // 1-20
+        const frenchWord = FRENCH_NUMBERS[num];
+
+        questions.push({
+            q: `Escribe en francés: ${num}`,
+            type: 'text',
+            a: frenchWord
+        });
+    }
+    return questions;
+}
+
 const DATA = {
     lessons: [
         {
@@ -151,7 +171,8 @@ const DATA = {
             ],
             generators: [
                 (count) => generateFrenchMathQuestions(count),
-                (count) => generateFrenchSequenceQuestions(count)
+                (count) => generateFrenchSequenceQuestions(count),
+                (count) => generateFrenchTranslationQuestions(count)
             ]
         }
     ]

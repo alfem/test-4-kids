@@ -4,6 +4,7 @@ const App = {
 
     init() {
         StorageManager.updateUI();
+        this.checkUserName();
         this.router();
 
         // Listen for browser navigation
@@ -13,6 +14,46 @@ const App = {
                 SoundManager.audioCtx.resume();
             }
         };
+    },
+
+    checkUserName() {
+        const name = StorageManager.getName();
+        if (!name) {
+            this.showNamePrompt();
+        } else {
+            this.updateGreeting(name);
+        }
+    },
+
+    showNamePrompt() {
+        const content = document.getElementById('app');
+        const modal = document.createElement('div');
+        modal.id = 'name-modal';
+        modal.className = 'modal-overlay';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <h2>¡Hola! 👋</h2>
+                <p>¿Cómo te llamas?</p>
+                <input type="text" id="username-input" placeholder="Tu nombre aquí..." autocomplete="off">
+                <button id="btn-save-name" class="btn-primary">Guardar</button>
+            </div>
+        `;
+        content.appendChild(modal);
+
+        document.getElementById('btn-save-name').onclick = () => {
+            const input = document.getElementById('username-input');
+            const name = input.value.trim();
+            if (name) {
+                StorageManager.saveName(name);
+                this.updateGreeting(name);
+                document.getElementById('name-modal').remove();
+            }
+        };
+    },
+
+    updateGreeting(name) {
+        const headerTitle = document.querySelector('header h1');
+        headerTitle.innerHTML = `🎒 Aprende y Juega, ${name} 🚀`;
     },
 
     router() {
@@ -63,6 +104,9 @@ const App = {
         const content = document.getElementById('content-area');
         const template = document.getElementById('result-template').content.cloneNode(true);
         content.innerHTML = '';
+
+        const name = StorageManager.getName() || "Campeón/a";
+        template.querySelector('h2').innerText = `¡Muy bien, ${name}! 🎉`;
 
         template.getElementById('result-stars').innerText = score;
         template.getElementById('btn-finish-stats').onclick = () => {
