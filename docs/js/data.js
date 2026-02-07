@@ -284,6 +284,62 @@ const DATA = {
             generators: [
                 (count) => generateFrenchVerbQuestions(count)
             ]
+        },
+        {
+            id: 'french-days-months',
+            title: '🇫🇷 Francés: Días y Meses',
+            icon: '📅',
+            difficulty: '⭐⭐',
+            theory: `
+                <h3>Los Días de la Semana 🗓️</h3>
+                <div class="number-grid">
+                    <div class="number-item">Lundi (Lunes)</div>
+                    <div class="number-item">Mardi (Martes)</div>
+                    <div class="number-item">Mercredi (Miércoles)</div>
+                    <div class="number-item">Jeudi (Jueves)</div>
+                    <div class="number-item">Vendredi (Viernes)</div>
+                    <div class="number-item" style="background:#ffccbc">Samedi (Sábado)</div>
+                    <div class="number-item" style="background:#ffccbc">Dimanche (Domingo)</div>
+                </div>
+
+                <h3>Los Meses del Año 🎂</h3>
+                <div class="number-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="number-item">Janvier</div>
+                    <div class="number-item">Février</div>
+                    <div class="number-item">Mars</div>
+                    <div class="number-item">Avril</div>
+                    <div class="number-item">Mai</div>
+                    <div class="number-item">Juin</div>
+                    <div class="number-item">Juillet</div>
+                    <div class="number-item">Août</div>
+                    <div class="number-item">Septembre</div>
+                    <div class="number-item">Octobre</div>
+                    <div class="number-item">Novembre</div>
+                    <div class="number-item">Décembre</div>
+                </div>
+
+                <h3>Curiosidades 🤓</h3>
+                <ul style="text-align: left; margin-top: 20px;">
+                    <li>En francés, los días y meses se escriben <strong>siempre en minúscula</strong> (lundi, enero), no como en inglés.</li>
+                    <li>Sábado y Domingo (Le Week-end) son los días favoritos 🎉.</li>
+                </ul>
+            `,
+            questions: [
+                { q: "¿Qué día va después de Lundi?", options: ["Mardi", "Mercredi", "Jeudi", "Dimanche"], a: 0 },
+                { q: "¿Cómo se dice 'Domingo'?", options: ["Samedi", "Dimanche", "Lundi", "Mardi"], a: 1 },
+                { q: "¿En qué mes es Navidad?", options: ["Janvier", "Décembre", "Juillet", "Août"], a: 1 },
+                { q: "¿Qué mes tiene menos días?", options: ["Février", "Mars", "Mai", "Juin"], a: 0 },
+                { q: "Sigue la serie: Jeudi, Vendredi, ___", options: ["Samedi", "Dimanche", "Lundi", "Mardi"], a: 0 },
+                { q: "¿Cuál es el primer mes del año?", options: ["Décembre", "Janvier", "Mars", "Avril"], a: 1 },
+                { q: "¿Cómo se dice 'Fin de semana'?", options: ["La Semaine", "Le Week-end", "Le Jour", "L'Année"], a: 1 },
+                { q: "El día antes de Mercredi es...", options: ["Lundi", "Mardi", "Jeudi", "Vendredi"], a: 1 },
+                { q: "¿En qué mes empiezan las clases?", options: ["Septembre", "Juillet", "Décembre", "Février"], a: 0 },
+                { q: "¿Cuál es el quinto mes?", options: ["Avril", "Mai", "Juin", "Mars"], a: 1 }
+            ],
+            generators: [
+                (count) => generateDaySequenceQuestions(count),
+                (count) => generateMonthSequenceQuestions(count)
+            ]
         }
     ]
 };
