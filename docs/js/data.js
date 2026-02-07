@@ -150,6 +150,63 @@ function generateFrenchVerbQuestions(count) {
     return questions;
 }
 
+const FRENCH_DAYS = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+const FRENCH_MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+
+function generateDaySequenceQuestions(count) {
+    const questions = [];
+    for (let i = 0; i < count; i++) {
+        const start = Math.floor(Math.random() * 5);
+
+        const qText = `Sigue la serie: ${FRENCH_DAYS[start]}, ${FRENCH_DAYS[start + 1]}, ___`;
+        const correctAnswer = FRENCH_DAYS[start + 2];
+
+        let options = [correctAnswer];
+        while (options.length < 4) {
+            const randIdx = Math.floor(Math.random() * 7);
+            const distractor = FRENCH_DAYS[randIdx];
+            if (!options.includes(distractor)) {
+                options.push(distractor);
+            }
+        }
+
+        options.sort(() => Math.random() - 0.5);
+        questions.push({
+            q: qText,
+            options: options,
+            a: options.indexOf(correctAnswer)
+        });
+    }
+    return questions;
+}
+
+function generateMonthSequenceQuestions(count) {
+    const questions = [];
+    for (let i = 0; i < count; i++) {
+        const start = Math.floor(Math.random() * 10);
+
+        const qText = `Sigue la serie: ${FRENCH_MONTHS[start]}, ${FRENCH_MONTHS[start + 1]}, ___`;
+        const correctAnswer = FRENCH_MONTHS[start + 2];
+
+        let options = [correctAnswer];
+        while (options.length < 4) {
+            const randIdx = Math.floor(Math.random() * 12);
+            const distractor = FRENCH_MONTHS[randIdx];
+            if (!options.includes(distractor)) {
+                options.push(distractor);
+            }
+        }
+
+        options.sort(() => Math.random() - 0.5);
+        questions.push({
+            q: qText,
+            options: options,
+            a: options.indexOf(correctAnswer)
+        });
+    }
+    return questions;
+}
+
 const DATA = {
     lessons: [
         {
