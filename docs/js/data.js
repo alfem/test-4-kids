@@ -91,6 +91,65 @@ function generateFrenchTranslationQuestions(count) {
     return questions;
 }
 
+const FRENCH_VERBS = {
+    etre: {
+        name: "Être",
+        conjugation: [
+            { s: "Je", v: "suis" },
+            { s: "Tu", v: "es" },
+            { s: "Il/Elle/On", v: "est" },
+            { s: "Nous", v: "sommes" },
+            { s: "Vous", v: "êtes" },
+            { s: "Ils/Elles", v: "sont" }
+        ]
+    },
+    avoir: {
+        name: "Avoir",
+        conjugation: [
+            { s: "J'", v: "ai" },
+            { s: "Tu", v: "as" },
+            { s: "Il/Elle/On", v: "a" },
+            { s: "Nous", v: "avons" },
+            { s: "Vous", v: "avez" },
+            { s: "Ils/Elles", v: "ont" }
+        ]
+    }
+};
+
+function generateFrenchVerbQuestions(count) {
+    const questions = [];
+    const verbs = ['etre', 'avoir'];
+
+    for (let i = 0; i < count; i++) {
+        const verbKey = verbs[Math.floor(Math.random() * verbs.length)];
+        const verbData = FRENCH_VERBS[verbKey];
+        const index = Math.floor(Math.random() * 6);
+        const item = verbData.conjugation[index];
+
+        const qText = `Completa: ${item.s} ______ (${verbData.name})`;
+        const correctAnswer = item.v;
+
+        // Distractors
+        let options = [correctAnswer];
+        while (options.length < 4) {
+            // Pick random form from same verb
+            const randIdx = Math.floor(Math.random() * 6);
+            const distractor = verbData.conjugation[randIdx].v;
+            if (!options.includes(distractor)) {
+                options.push(distractor);
+            }
+        }
+
+        options.sort(() => Math.random() - 0.5);
+        questions.push({
+            q: qText,
+            options: options,
+            a: options.indexOf(correctAnswer)
+        });
+    }
+    return questions;
+}
+
 const DATA = {
     lessons: [
         {
@@ -173,6 +232,57 @@ const DATA = {
                 (count) => generateFrenchMathQuestions(count),
                 (count) => generateFrenchSequenceQuestions(count),
                 (count) => generateFrenchTranslationQuestions(count)
+            ]
+        },
+        {
+            id: 'french-verbs-etre-avoir',
+            title: '🇫🇷 Francés: Être y Avoir',
+            icon: '🏰',
+            difficulty: '⭐⭐',
+            theory: `
+                <h3>Verbo Être (Ser/Estar) 🦸‍♂️</h3>
+                <p>Se usa para decir quién eres o cómo estás.</p>
+                <div class="number-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="number-item" style="background:#e3f2fd">Je suis (Yo soy)</div>
+                    <div class="number-item" style="background:#e3f2fd">Nous sommes (Nosotros somos)</div>
+                    <div class="number-item" style="background:#bbdefb">Tu es (Tú eres)</div>
+                    <div class="number-item" style="background:#bbdefb">Vous êtes (Vosotros sois)</div>
+                    <div class="number-item" style="background:#90caf9">Il est (Él es)</div>
+                    <div class="number-item" style="background:#90caf9">Ils sont (Ellos son)</div>
+                </div>
+
+                <h3>Verbo Avoir (Tener) 🎒</h3>
+                <p>Se usa para decir qué tienes.</p>
+                <div class="number-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="number-item" style="background:#f3e5f5">J'ai (Yo tengo)</div>
+                    <div class="number-item" style="background:#f3e5f5">Nous avons (Nosotros tenemos)</div>
+                    <div class="number-item" style="background:#e1bee7">Tu as (Tú tienes)</div>
+                    <div class="number-item" style="background:#e1bee7">Vous avez (Vosotros tenéis)</div>
+                    <div class="number-item" style="background:#ce93d8">Il a (Él tiene)</div>
+                    <div class="number-item" style="background:#ce93d8">Ils ont (Ellos tienen)</div>
+                </div>
+
+                <h3>Trucos para Recordar 💡</h3>
+                <ul style="text-align: left; margin-top: 20px;">
+                    <li><strong>TU</strong> siempre lleva <strong>S</strong> al final (E<strong>s</strong>, A<strong>s</strong>).</li>
+                    <li>Con <strong>VOUS</strong> casi siempre acaba en <strong>EZ</strong> (Av<strong>ez</strong>), ¡pero Êtes es especial!</li>
+                    <li><strong>J'ai</strong> se escribe así porque "Je" y "ai" chocan las vocales 💥.</li>
+                </ul>
+            `,
+            questions: [
+                { q: "¿Qué significa 'Je suis'?", options: ["Yo tengo", "Yo soy", "Tú eres", "Él es"], a: 1 },
+                { q: "Completa: Tu ___ intelligent.", options: ["es", "est", "suis", "sommes"], a: 0 },
+                { q: "¿Cómo se dice 'Nosotros tenemos'?", options: ["Nous sommes", "Nous avons", "Vous avez", "Ils ont"], a: 1 },
+                { q: "Completa: J'___ un chien (perro).", options: ["ai", "as", "a", "ave"], a: 0 },
+                { q: "Elige la correcta: Vous ___.", options: ["sommes", "êtes", "sont", "est"], a: 1 },
+                { q: "Completa: Ils ___ contents (contentos).", options: ["ont", "sont", "est", "a"], a: 1 },
+                { q: "¿Qué significa 'Il a'?", options: ["Él es", "Él tiene", "Ella es", "Ella tiene"], a: 1 },
+                { q: "Completa: Elle ___ belle.", options: ["es", "est", "a", "as"], a: 1 },
+                { q: "Completa: Tu ___ un chat.", options: ["es", "as", "a", "est"], a: 1 },
+                { q: "¿Cómo se escribe 'Ellos tienen'?", options: ["Ils sont", "Ils ont", "Elles sont", "Elles ont"], a: 1 }
+            ],
+            generators: [
+                (count) => generateFrenchVerbQuestions(count)
             ]
         }
     ]
