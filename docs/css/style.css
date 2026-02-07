@@ -1,0 +1,272 @@
+:root {
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --accent-color: #FFE66D;
+    --dark-color: #2C3E50;
+    --light-color: #F7F9F9;
+    --success-color: #2ECC71;
+    --error-color: #E74C3C;
+    --font-main: 'Fredoka', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--light-color);
+    margin: 0;
+    padding: 0;
+    color: var(--dark-color);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#app {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.main-header {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid rgba(0,0,0,0.1);
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.score-display {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: rgba(255,255,255,0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+#content-area {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Home Page */
+.subject-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.subject-card {
+    background: white;
+    border: 3px solid var(--secondary-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    background-color: #f0fffe;
+}
+
+.subject-card h3 {
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Theory Page */
+.theory-container {
+    width: 100%;
+}
+
+.theory-content {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    background: #fdfdfd;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px dashed var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.number-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.number-item {
+    background: var(--accent-color);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-main);
+    box-shadow: 0 5px 0 #d43f3f;
+    transition: transform 0.1s;
+}
+
+.btn-primary:active {
+    transform: translateY(5px);
+    box-shadow: none;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.btn-back {
+    background: none;
+    border: 2px solid #ccc;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    font-family: var(--font-main);
+    color: #777;
+}
+
+/* Quiz Page */
+.quiz-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 15px;
+    background: #eee;
+    margin: 0 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--secondary-color);
+    width: 0%;
+    transition: width 0.3s;
+}
+
+.question-area {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.option-btn {
+    background: white;
+    border: 2px solid var(--secondary-color);
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: all 0.2s;
+}
+
+.option-btn:hover {
+    background: #e3fcf9;
+}
+
+.option-btn.correct {
+    background-color: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+    animation: pop 0.3s;
+}
+
+.option-btn.incorrect {
+    background-color: var(--error-color);
+    color: white;
+    border-color: var(--error-color);
+    animation: shake 0.4s;
+}
+
+/* Animations */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes pop {
+    50% { transform: scale(1.1); }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Result Page */
+.result-container {
+    text-align: center;
+}
+
+.final-stars {
+    font-size: 4rem;
+    margin: 2rem 0;
+    animation: pop 0.5s;
+}

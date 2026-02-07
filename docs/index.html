@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende y Juega</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header class="main-header">
+            <h1>🎒 Aprende y Juega 🚀</h1>
+            <div id="global-score" class="score-display">🌟 <span id="total-stars">0</span></div>
+        </header>
+
+        <main id="content-area">
+            <!-- Dynamic Content will be loaded here -->
+        </main>
+
+        <footer class="main-footer">
+            <p>Hecho para aprender divirtiéndose.</p>
+        </footer>
+    </div>
+
+    <!-- Templates -->
+    <template id="home-template">
+        <div class="welcome-section">
+            <h2>¡Elige un tema para empezar!</h2>
+            <div class="subject-grid" id="subject-list"></div>
+        </div>
+    </template>
+
+    <template id="theory-template">
+        <div class="theory-container">
+            <button class="btn-back" id="btn-back-home">⬅ Volver</button>
+            <h2 id="theory-title"></h2>
+            <div id="theory-content" class="theory-content"></div>
+            <div class="action-area">
+                <button id="btn-start-practice" class="btn-primary pulse">¡A Practicar! ▶</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="quiz-template">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <button class="btn-back" id="btn-quit-quiz">❌ Salir</button>
+                <div class="progress-bar-container">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+                <div class="quiz-score">⭐ <span id="current-quiz-stars">0</span></div>
+            </div>
+            <div id="question-area" class="question-area">
+                <h3 id="question-text"></h3>
+                <div id="options-grid" class="options-grid"></div>
+            </div>
+            <div id="feedback-area" class="feedback-area hidden">
+                <p id="feedback-message"></p>
+                <button id="btn-next-question" class="btn-secondary">Siguiente ➡</button>
+            </div>
+        </div>
+    </template>
+
+    <template id="result-template">
+        <div class="result-container">
+            <h2>¡Lección Completada! 🎉</h2>
+            <div class="final-stars">
+                ⭐⭐⭐
+            </div>
+            <p>Has conseguido <span id="result-stars">0</span> estrellas nuevas.</p>
+            <button id="btn-finish-stats" class="btn-primary">Volver al Menú</button>
+        </div>
+    </template>
+
+    <script src="js/storage.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/sounds.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
