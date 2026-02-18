@@ -207,6 +207,114 @@ function generateMonthSequenceQuestions(count) {
     return questions;
 }
 
+// ── Adverbs lesson data ──────────────────────────────────────────────────────
+
+const ADVERBS_DATA = [
+    // [adverb, type, example]
+    ["aquí", "lugar", "El gato está aquí."],
+    ["allí", "lugar", "El libro está allí."],
+    ["cerca", "lugar", "Vivo cerca del colegio."],
+    ["lejos", "lugar", "El parque está lejos."],
+    ["dentro", "lugar", "El perro está dentro."],
+    ["fuera", "lugar", "Juega fuera de casa."],
+    ["arriba", "lugar", "El pájaro vuela arriba."],
+    ["abajo", "lugar", "El gato está abajo."],
+    ["hoy", "tiempo", "Hoy tenemos clase."],
+    ["ayer", "tiempo", "Ayer fui al parque."],
+    ["mañana", "tiempo", "Mañana es domingo."],
+    ["siempre", "tiempo", "Siempre desayuno leche."],
+    ["nunca", "tiempo", "Nunca llego tarde."],
+    ["antes", "tiempo", "Antes llovía mucho."],
+    ["después", "tiempo", "Después comemos."],
+    ["pronto", "tiempo", "Llegaré pronto."],
+    ["bien", "modo", "Canta muy bien."],
+    ["mal", "modo", "Hoy me siento mal."],
+    ["despacio", "modo", "Habla despacio, por favor."],
+    ["rápido", "modo", "Corre muy rápido."],
+    ["así", "modo", "Hazlo así."],
+    ["mucho", "cantidad", "Come mucho."],
+    ["poco", "cantidad", "Duerme poco."],
+    ["bastante", "cantidad", "Hay bastante comida."],
+    ["demasiado", "cantidad", "Hablas demasiado."],
+    ["más", "cantidad", "Quiero más agua."],
+    ["menos", "cantidad", "Hay menos niños."],
+    ["sí", "afirmación", "Sí, quiero ir."],
+    ["también", "afirmación", "Yo también quiero."],
+    ["claro", "afirmación", "Claro que vengo."],
+    ["no", "negación", "No quiero sopa."],
+    ["tampoco", "negación", "Yo tampoco quiero."],
+    ["jamás", "negación", "Jamás miento."],
+    ["quizás", "duda", "Quizás llueva mañana."],
+    ["tal vez", "duda", "Tal vez venga Pedro."],
+    ["acaso", "duda", "¿Acaso no lo sabes?"]
+];
+
+const ADVERB_TYPES = {
+    lugar: { label: "Lugar", emoji: "📍", color: "#e3f2fd" },
+    tiempo: { label: "Tiempo", emoji: "⏰", color: "#f3e5f5" },
+    modo: { label: "Modo", emoji: "🎭", color: "#e8f5e9" },
+    cantidad: { label: "Cantidad", emoji: "🔢", color: "#fff3e0" },
+    afirmación: { label: "Afirmación", emoji: "✅", color: "#e0f7fa" },
+    negación: { label: "Negación", emoji: "❌", color: "#fce4ec" },
+    duda: { label: "Duda", emoji: "🤔", color: "#f9fbe7" }
+};
+
+function generateAdverbTypeQuestions(count) {
+    const questions = [];
+    const pool = [...ADVERBS_DATA];
+    pool.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < count; i++) {
+        const item = pool[i % pool.length];
+        const [adverb, correctType] = item;
+        const correctLabel = ADVERB_TYPES[correctType].label;
+
+        const allLabels = Object.values(ADVERB_TYPES).map(t => t.label);
+        let options = [correctLabel];
+        const shuffled = allLabels.filter(l => l !== correctLabel).sort(() => Math.random() - 0.5);
+        options = options.concat(shuffled.slice(0, 3));
+        options.sort(() => Math.random() - 0.5);
+
+        questions.push({
+            q: `¿De qué tipo es el adverbio "${adverb}"?`,
+            options,
+            a: options.indexOf(correctLabel)
+        });
+    }
+    return questions;
+}
+
+function generateAdverbExampleQuestions(count) {
+    const questions = [];
+    const pool = [...ADVERBS_DATA];
+    pool.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < count; i++) {
+        const item = pool[i % pool.length];
+        const [adverb, , example] = item;
+        // Ask: which adverb fits the blank?
+        const blanked = example.replace(adverb, "___");
+
+        let options = [adverb];
+        const distractors = pool
+            .filter(d => d[0] !== adverb)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+            .map(d => d[0]);
+        options = options.concat(distractors);
+        options.sort(() => Math.random() - 0.5);
+
+        questions.push({
+            q: `Elige el adverbio correcto: "${blanked}"`,
+            options,
+            a: options.indexOf(adverb)
+        });
+    }
+    return questions;
+}
+
+// ── End adverbs data ─────────────────────────────────────────────────────────
+
 const DATA = {
     lessons: [
         {
@@ -396,6 +504,82 @@ const DATA = {
             generators: [
                 (count) => generateDaySequenceQuestions(count),
                 (count) => generateMonthSequenceQuestions(count)
+            ]
+        },
+        {
+            id: 'spanish-adverbs',
+            title: '📚 Lengua: Los Adverbios',
+            icon: '🔤',
+            difficulty: '⭐⭐',
+            theory: `
+                <h3>¿Qué es un adverbio? 🤔</h3>
+                <div class="theory-content">
+                    <p>El <strong>adverbio</strong> es una palabra que acompaña al verbo, al adjetivo u a otro adverbio para <strong>modificar su significado</strong>.</p>
+                    <p>Ejemplo: Corre <strong>rápido</strong>. Está muy <strong>lejos</strong>.</p>
+                </div>
+
+                <h3>Tipos de Adverbios 📋</h3>
+
+                <div class="number-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="number-item" style="background:#e3f2fd">
+                        <strong>📍 Lugar</strong><br>
+                        aquí, allí, cerca, lejos,<br>dentro, fuera, arriba, abajo
+                    </div>
+                    <div class="number-item" style="background:#f3e5f5">
+                        <strong>⏰ Tiempo</strong><br>
+                        hoy, ayer, mañana, siempre,<br>nunca, antes, después, pronto
+                    </div>
+                    <div class="number-item" style="background:#e8f5e9">
+                        <strong>🎭 Modo</strong><br>
+                        bien, mal, despacio,<br>rápido, así
+                    </div>
+                    <div class="number-item" style="background:#fff3e0">
+                        <strong>🔢 Cantidad</strong><br>
+                        mucho, poco, bastante,<br>demasiado, más, menos
+                    </div>
+                    <div class="number-item" style="background:#e0f7fa">
+                        <strong>✅ Afirmación</strong><br>
+                        sí, también, claro
+                    </div>
+                    <div class="number-item" style="background:#fce4ec">
+                        <strong>❌ Negación</strong><br>
+                        no, tampoco, jamás
+                    </div>
+                </div>
+
+                <div class="number-item" style="background:#f9fbe7; margin-top: 10px;">
+                    <strong>🤔 Duda</strong><br>
+                    quizás, tal vez, acaso
+                </div>
+
+                <h3>Truco para recordarlos 💡</h3>
+                <div class="theory-content">
+                    <p>Pregúntate: <em>¿Dónde? ¿Cuándo? ¿Cómo? ¿Cuánto?</em></p>
+                    <ul style="text-align: left;">
+                        <li>¿<strong>Dónde</strong>? → Adverbio de <strong>lugar</strong> (aquí, lejos…)</li>
+                        <li>¿<strong>Cuándo</strong>? → Adverbio de <strong>tiempo</strong> (hoy, nunca…)</li>
+                        <li>¿<strong>Cómo</strong>? → Adverbio de <strong>modo</strong> (bien, rápido…)</li>
+                        <li>¿<strong>Cuánto</strong>? → Adverbio de <strong>cantidad</strong> (mucho, poco…)</li>
+                    </ul>
+                </div>
+            `,
+            questions: [
+                { q: "¿Qué tipo de adverbio es 'aquí'?", options: ["Tiempo", "Lugar", "Modo", "Cantidad"], a: 1 },
+                { q: "¿Qué tipo de adverbio es 'siempre'?", options: ["Lugar", "Modo", "Tiempo", "Duda"], a: 2 },
+                { q: "¿Qué tipo de adverbio es 'bien'?", options: ["Modo", "Cantidad", "Afirmación", "Lugar"], a: 0 },
+                { q: "¿Qué tipo de adverbio es 'mucho'?", options: ["Tiempo", "Negación", "Cantidad", "Duda"], a: 2 },
+                { q: "¿Qué tipo de adverbio es 'no'?", options: ["Afirmación", "Negación", "Duda", "Modo"], a: 1 },
+                { q: "¿Qué tipo de adverbio es 'quizás'?", options: ["Tiempo", "Afirmación", "Negación", "Duda"], a: 3 },
+                { q: "¿Qué tipo de adverbio es 'sí'?", options: ["Negación", "Duda", "Afirmación", "Modo"], a: 2 },
+                { q: "En 'Corre muy rápido', ¿qué tipo de adverbio es 'rápido'?", options: ["Lugar", "Tiempo", "Cantidad", "Modo"], a: 3 },
+                { q: "¿Cuál de estos es un adverbio de lugar?", options: ["nunca", "bien", "lejos", "también"], a: 2 },
+                { q: "¿Cuál de estos es un adverbio de tiempo?", options: ["aquí", "ayer", "poco", "jamás"], a: 1 },
+                { q: "¿Cuál de estos es un adverbio de cantidad?", options: ["tal vez", "allí", "bastante", "mal"], a: 2 },
+                { q: "¿Cuál de estos es un adverbio de negación?", options: ["claro", "tampoco", "pronto", "así"], a: 1 }
+            ],
+            generators: [
+                (count) => generateAdverbTypeQuestions(count),
+                (count) => generateAdverbExampleQuestions(count)
             ]
         }
     ]
