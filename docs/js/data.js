@@ -581,6 +581,202 @@ const DATA = {
                 (count) => generateAdverbTypeQuestions(count),
                 (count) => generateAdverbExampleQuestions(count)
             ]
+        },
+        {
+            id: 'spanish-conjunctions',
+            title: '📚 Lengua: Las Conjunciones',
+            icon: '🔗',
+            difficulty: '⭐⭐⭐',
+            theory: `
+                <h3>¿Qué es una conjunción? 🤔</h3>
+                <div class="theory-content">
+                    <p>La <strong>conjunción</strong> es una palabra que <strong>une</strong> palabras, grupos de palabras u oraciones entre sí.</p>
+                    <p>Ejemplo: María <strong>y</strong> Juan son amigos. Quiero ir, <strong>pero</strong> estoy cansado.</p>
+                </div>
+
+                <h3>Tipos de Conjunciones 📋</h3>
+
+                <div class="number-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="number-item" style="background:#e3f2fd">
+                        <strong>➕ Copulativas</strong><br>
+                        Unen elementos<br>
+                        <em>y, e, ni</em>
+                    </div>
+                    <div class="number-item" style="background:#fff3e0">
+                        <strong>🔀 Disyuntivas</strong><br>
+                        Presentan alternativas<br>
+                        <em>o, u</em>
+                    </div>
+                    <div class="number-item" style="background:#fce4ec">
+                        <strong>⚡ Adversativas</strong><br>
+                        Expresan contraste<br>
+                        <em>pero, sino, aunque</em>
+                    </div>
+                    <div class="number-item" style="background:#f3e5f5">
+                        <strong>🔍 Causales</strong><br>
+                        Indican causa<br>
+                        <em>porque, pues, ya que</em>
+                    </div>
+                    <div class="number-item" style="background:#e8f5e9">
+                        <strong>🎯 Finales</strong><br>
+                        Expresan finalidad<br>
+                        <em>para que, a fin de que</em>
+                    </div>
+                    <div class="number-item" style="background:#e0f7fa">
+                        <strong>❓ Condicionales</strong><br>
+                        Expresan condición<br>
+                        <em>si, con tal de que</em>
+                    </div>
+                    <div class="number-item" style="background:#f9fbe7">
+                        <strong>⏱️ Temporales</strong><br>
+                        Sitúan en el tiempo<br>
+                        <em>cuando, mientras, antes de que</em>
+                    </div>
+                    <div class="number-item" style="background:#ede7f6">
+                        <strong>📝 Completivas</strong><br>
+                        Introducen una oración<br>
+                        <em>que</em>
+                    </div>
+                </div>
+
+                <div class="number-grid" style="grid-template-columns: 1fr 1fr; margin-top: 10px;">
+                    <div class="number-item" style="background:#e8eaf6">
+                        <strong>⚖️ Comparativas</strong><br>
+                        Establecen comparación<br>
+                        <em>como, tan… como</em>
+                    </div>
+                    <div class="number-item" style="background:#fbe9e7">
+                        <strong>➡️ Consecutivas</strong><br>
+                        Expresan consecuencia<br>
+                        <em>así que, por lo tanto</em>
+                    </div>
+                </div>
+
+                <h3>Truco para recordarlas 💡</h3>
+                <div class="theory-content">
+                    <ul style="text-align: left;">
+                        <li><strong>y / e / ni</strong> → suman cosas (copulativas)</li>
+                        <li><strong>o / u</strong> → eligen entre opciones (disyuntivas)</li>
+                        <li><strong>pero / sino / aunque</strong> → contradicen (adversativas)</li>
+                        <li><strong>porque / pues</strong> → explican el motivo (causales)</li>
+                        <li><strong>si</strong> → ponen una condición (condicionales)</li>
+                        <li><strong>cuando / mientras</strong> → dicen cuándo (temporales)</li>
+                    </ul>
+                    <p>💡 <em>"e"</em> se usa en lugar de <em>"y"</em> cuando la siguiente palabra empieza por <strong>i</strong> o <strong>hi</strong>. <em>"u"</em> sustituye a <em>"o"</em> cuando la siguiente palabra empieza por <strong>o</strong> u <strong>ho</strong>.</p>
+                </div>
+            `,
+            questions: [
+                { q: "¿Qué tipo de conjunción es 'y'?", options: ["Disyuntiva", "Copulativa", "Adversativa", "Causal"], a: 1 },
+                { q: "¿Qué tipo de conjunción es 'pero'?", options: ["Copulativa", "Causal", "Adversativa", "Final"], a: 2 },
+                { q: "¿Qué tipo de conjunción es 'porque'?", options: ["Causal", "Condicional", "Temporal", "Copulativa"], a: 0 },
+                { q: "¿Qué tipo de conjunción es 'o'?", options: ["Copulativa", "Adversativa", "Disyuntiva", "Causal"], a: 2 },
+                { q: "¿Qué tipo de conjunción es 'si'?", options: ["Temporal", "Condicional", "Causal", "Final"], a: 1 },
+                { q: "¿Qué tipo de conjunción es 'cuando'?", options: ["Causal", "Condicional", "Copulativa", "Temporal"], a: 3 },
+                { q: "¿Qué tipo de conjunción es 'para que'?", options: ["Final", "Causal", "Temporal", "Adversativa"], a: 0 },
+                { q: "¿Qué tipo de conjunción es 'que'?", options: ["Copulativa", "Comparativa", "Completiva", "Causal"], a: 2 },
+                { q: "En 'Quiero ir, pero estoy cansado', ¿qué tipo es 'pero'?", options: ["Causal", "Adversativa", "Copulativa", "Disyuntiva"], a: 1 },
+                { q: "¿Cuál de estas es una conjunción copulativa?", options: ["pero", "porque", "ni", "si"], a: 2 },
+                { q: "¿Cuál de estas es una conjunción causal?", options: ["aunque", "ya que", "o", "cuando"], a: 1 },
+                { q: "¿Cuándo usamos 'e' en lugar de 'y'?", options: ["Antes de palabras con 'a'", "Antes de palabras con 'i' o 'hi'", "Siempre al final", "Antes de palabras con 'o'"], a: 1 }
+            ],
+            generators: [
+                (count) => generateConjunctionTypeQuestions(count),
+                (count) => generateConjunctionFillQuestions(count)
+            ]
         }
     ]
 };
+
+// ── Conjunctions lesson data ──────────────────────────────────────────────────
+
+const CONJUNCTIONS_DATA = [
+    // [conjunction, type, sentence_with_blank]
+    ["y", "copulativa", "María ___ Juan son amigos."],
+    ["e", "copulativa", "Pedro ___ Ignacio juegan juntos."],
+    ["ni", "copulativa", "No como carne ___ pescado."],
+    ["o", "disyuntiva", "¿Quieres leche ___ zumo?"],
+    ["u", "disyuntiva", "¿Tienes siete ___ ocho años?"],
+    ["pero", "adversativa", "Quiero ir, ___ estoy cansado."],
+    ["sino", "adversativa", "No es azul, ___ verde."],
+    ["aunque", "adversativa", "Salí ___ llovía."],
+    ["porque", "causal", "No fui ___ estaba enfermo."],
+    ["pues", "causal", "Descansa, ___ estás cansado."],
+    ["ya que", "causal", "Come, ___ tienes hambre."],
+    ["para que", "final", "Estudia ___ aprendas."],
+    ["a fin de que", "final", "Habla despacio ___ te entiendan."],
+    ["si", "condicional", "___ estudias, aprobarás."],
+    ["con tal de que", "condicional", "Iré ___ me invites."],
+    ["cuando", "temporal", "Llámame ___ llegues."],
+    ["mientras", "temporal", "Juega ___ yo cocino."],
+    ["antes de que", "temporal", "Sal ___ llueva."],
+    ["que", "completiva", "Sé ___ vendrás."],
+    ["como", "comparativa", "Es tan alto ___ su padre."],
+    ["así que", "consecutiva", "Llovía, ___ cogí el paraguas."]
+];
+
+const CONJUNCTION_TYPES = {
+    copulativa: { label: "Copulativa", emoji: "➕", color: "#e3f2fd", desc: "unen elementos (y, e, ni)" },
+    disyuntiva: { label: "Disyuntiva", emoji: "🔀", color: "#fff3e0", desc: "presentan alternativas (o, u)" },
+    adversativa: { label: "Adversativa", emoji: "⚡", color: "#fce4ec", desc: "expresan contraste (pero, sino, aunque)" },
+    causal: { label: "Causal", emoji: "🔍", color: "#f3e5f5", desc: "indican causa (porque, pues, ya que)" },
+    final: { label: "Final", emoji: "🎯", color: "#e8f5e9", desc: "expresan finalidad (para que)" },
+    condicional: { label: "Condicional", emoji: "❓", color: "#e0f7fa", desc: "expresan condición (si)" },
+    temporal: { label: "Temporal", emoji: "⏱️", color: "#f9fbe7", desc: "sitúan en el tiempo (cuando, mientras)" },
+    completiva: { label: "Completiva", emoji: "📝", color: "#ede7f6", desc: "introducen una oración (que)" },
+    comparativa: { label: "Comparativa", emoji: "⚖️", color: "#e8eaf6", desc: "establecen comparación (como)" },
+    consecutiva: { label: "Consecutiva", emoji: "➡️", color: "#fbe9e7", desc: "expresan consecuencia (así que)" }
+};
+
+function generateConjunctionTypeQuestions(count) {
+    const questions = [];
+    const pool = [...CONJUNCTIONS_DATA];
+    pool.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < count; i++) {
+        const item = pool[i % pool.length];
+        const [conj, correctType] = item;
+        const correctLabel = CONJUNCTION_TYPES[correctType].label;
+
+        const allLabels = Object.values(CONJUNCTION_TYPES).map(t => t.label);
+        let options = [correctLabel];
+        const shuffled = allLabels.filter(l => l !== correctLabel).sort(() => Math.random() - 0.5);
+        options = options.concat(shuffled.slice(0, 3));
+        options.sort(() => Math.random() - 0.5);
+
+        questions.push({
+            q: `¿De qué tipo es la conjunción "${conj}"?`,
+            options,
+            a: options.indexOf(correctLabel)
+        });
+    }
+    return questions;
+}
+
+function generateConjunctionFillQuestions(count) {
+    const questions = [];
+    const pool = [...CONJUNCTIONS_DATA];
+    pool.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < count; i++) {
+        const item = pool[i % pool.length];
+        const [conj, , sentence] = item;
+
+        let options = [conj];
+        const distractors = pool
+            .filter(d => d[0] !== conj)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+            .map(d => d[0]);
+        options = options.concat(distractors);
+        options.sort(() => Math.random() - 0.5);
+
+        questions.push({
+            q: `Elige la conjunción correcta: "${sentence}"`,
+            options,
+            a: options.indexOf(conj)
+        });
+    }
+    return questions;
+}
+
+// ── End conjunctions data ─────────────────────────────────────────────────────
