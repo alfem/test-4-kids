@@ -683,6 +683,80 @@ const DATA = {
                 (count) => generateConjunctionTypeQuestions(count),
                 (count) => generateConjunctionFillQuestions(count)
             ]
+        },
+        {
+            id: 'spanish-prepositions',
+            title: '📚 Lengua: Las Preposiciones',
+            icon: '🔀',
+            difficulty: '⭐⭐',
+            theory: `
+                <h3>¿Qué es una preposición? 🤔</h3>
+                <div class="theory-content">
+                    <p>La <strong>preposición</strong> es una palabra <strong>invariable</strong> (no cambia) que sirve para <strong>relacionar</strong> palabras dentro de una oración.</p>
+                    <p>Ejemplo: Voy <strong>a</strong> la escuela. El libro está <strong>sobre</strong> la mesa.</p>
+                </div>
+
+                <h3>Las Preposiciones en Español 📋</h3>
+                <div class="number-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="number-item" style="background:#e3f2fd"><strong>a</strong></div>
+                    <div class="number-item" style="background:#e8f5e9"><strong>ante</strong></div>
+                    <div class="number-item" style="background:#fff3e0"><strong>bajo</strong></div>
+                    <div class="number-item" style="background:#fce4ec"><strong>con</strong></div>
+                    <div class="number-item" style="background:#f3e5f5"><strong>contra</strong></div>
+                    <div class="number-item" style="background:#e0f7fa"><strong>de</strong></div>
+                    <div class="number-item" style="background:#f9fbe7"><strong>desde</strong></div>
+                    <div class="number-item" style="background:#ede7f6"><strong>durante</strong></div>
+                    <div class="number-item" style="background:#e8eaf6"><strong>en</strong></div>
+                    <div class="number-item" style="background:#fbe9e7"><strong>entre</strong></div>
+                    <div class="number-item" style="background:#e3f2fd"><strong>hacia</strong></div>
+                    <div class="number-item" style="background:#e8f5e9"><strong>hasta</strong></div>
+                    <div class="number-item" style="background:#fff3e0"><strong>para</strong></div>
+                    <div class="number-item" style="background:#fce4ec"><strong>por</strong></div>
+                    <div class="number-item" style="background:#f3e5f5"><strong>según</strong></div>
+                    <div class="number-item" style="background:#e0f7fa"><strong>sin</strong></div>
+                    <div class="number-item" style="background:#f9fbe7"><strong>sobre</strong></div>
+                    <div class="number-item" style="background:#ede7f6"><strong>tras</strong></div>
+                </div>
+
+                <h3>¿Para qué sirven? 💡</h3>
+                <div class="theory-content">
+                    <ul style="text-align: left;">
+                        <li><strong>Lugar:</strong> El gato está <em>bajo</em> la silla. Vive <em>en</em> Madrid.</li>
+                        <li><strong>Tiempo:</strong> Llegué <em>a</em> las tres. Estudié <em>durante</em> dos horas.</li>
+                        <li><strong>Dirección:</strong> Voy <em>hacia</em> el parque. Caminé <em>hasta</em> casa.</li>
+                        <li><strong>Compañía:</strong> Fui <em>con</em> mis amigos.</li>
+                        <li><strong>Causa:</strong> Lo hice <em>por</em> ti.</li>
+                        <li><strong>Finalidad:</strong> Estudia <em>para</em> aprender.</li>
+                        <li><strong>Origen:</strong> Soy <em>de</em> España. Vengo <em>desde</em> lejos.</li>
+                    </ul>
+                </div>
+
+                <h3>Truco para recordarlas 🎵</h3>
+                <div class="theory-content">
+                    <p>¡Aprende esta lista de memoria!</p>
+                    <p style="font-size:1.1em; font-weight:bold; color:#5c6bc0;">
+                        a · ante · bajo · con · contra · de · desde · durante · en · entre · hacia · hasta · para · por · según · sin · sobre · tras
+                    </p>
+                </div>
+            `,
+            questions: [
+                { q: "¿Cuál de estas es una preposición?", options: ["pero", "muy", "de", "siempre"], a: 2 },
+                { q: "Completa: Voy ___ la escuela.", options: ["en", "a", "de", "sin"], a: 1 },
+                { q: "Completa: El libro está ___ la mesa.", options: ["sobre", "por", "desde", "hacia"], a: 0 },
+                { q: "Completa: Fui ___ mis amigos.", options: ["sin", "con", "para", "entre"], a: 1 },
+                { q: "Completa: Estudia ___ aprender.", options: ["por", "de", "para", "ante"], a: 2 },
+                { q: "Completa: Soy ___ España.", options: ["a", "en", "de", "con"], a: 2 },
+                { q: "Completa: Lo hice ___ ti.", options: ["sin", "por", "entre", "bajo"], a: 1 },
+                { q: "Completa: Llegó ___ las tres.", options: ["desde", "a", "hacia", "tras"], a: 1 },
+                { q: "¿Cuántas preposiciones tiene el español?", options: ["10", "14", "18", "20"], a: 2 },
+                { q: "Completa: Caminé ___ el río.", options: ["sobre", "según", "junto", "contra"], a: 0 },
+                { q: "¿Qué indica 'desde' en 'Vengo desde lejos'?", options: ["Finalidad", "Compañía", "Origen", "Lugar"], a: 2 },
+                { q: "Completa: Hay secretos ___ nosotros.", options: ["entre", "ante", "tras", "bajo"], a: 0 }
+            ],
+            generators: [
+                (count) => generatePrepositionFillQuestions(count),
+                (count) => generatePrepositionIdentifyQuestions(count)
+            ]
         }
     ]
 };
@@ -780,3 +854,84 @@ function generateConjunctionFillQuestions(count) {
 }
 
 // ── End conjunctions data ─────────────────────────────────────────────────────
+
+// ── Prepositions lesson data ──────────────────────────────────────────────────
+
+const PREPOSITIONS_DATA = [
+    // [preposition, use, sentence_with_blank]
+    ["a", "Dirección/Tiempo", "Voy ___ la escuela."],
+    ["ante", "Lugar", "Se presentó ___ el juez."],
+    ["bajo", "Lugar", "El gato está ___ la silla."],
+    ["con", "Compañía", "Fui ___ mis amigos."],
+    ["contra", "Oposición", "Chocó ___ la pared."],
+    ["de", "Origen/Posesión", "Soy ___ España."],
+    ["desde", "Origen", "Vengo ___ lejos."],
+    ["durante", "Tiempo", "Estudié ___ dos horas."],
+    ["en", "Lugar", "Vive ___ Madrid."],
+    ["entre", "Lugar", "Hay secretos ___ nosotros."],
+    ["hacia", "Dirección", "Voy ___ el parque."],
+    ["hasta", "Límite", "Caminé ___ casa."],
+    ["para", "Finalidad", "Estudia ___ aprender."],
+    ["por", "Causa", "Lo hice ___ ti."],
+    ["según", "Modo/Opinión", "___ el mapa, giramos aquí."],
+    ["sin", "Ausencia", "Salió ___ paraguas."],
+    ["sobre", "Lugar/Tema", "El libro está ___ la mesa."],
+    ["tras", "Posterioridad", "Llegó ___ la lluvia."]
+];
+
+const PREPOSITION_USES = [
+    "Dirección/Tiempo", "Lugar", "Compañía", "Oposición",
+    "Origen/Posesión", "Origen", "Tiempo", "Límite",
+    "Finalidad", "Causa", "Modo/Opinión", "Ausencia",
+    "Posterioridad"
+];
+
+function generatePrepositionFillQuestions(count) {
+    const questions = [];
+    const pool = [...PREPOSITIONS_DATA];
+    pool.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < count; i++) {
+        const item = pool[i % pool.length];
+        const [prep, , sentence] = item;
+
+        let options = [prep];
+        const distractors = pool
+            .filter(d => d[0] !== prep)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+            .map(d => d[0]);
+        options = options.concat(distractors);
+        options.sort(() => Math.random() - 0.5);
+
+        questions.push({
+            q: `Elige la preposición correcta: "${sentence}"`,
+            options,
+            a: options.indexOf(prep)
+        });
+    }
+    return questions;
+}
+
+function generatePrepositionIdentifyQuestions(count) {
+    const questions = [];
+    const allPreps = PREPOSITIONS_DATA.map(d => d[0]);
+    const nonPreps = ["pero", "muy", "siempre", "bien", "nunca", "también", "y", "o", "que", "cuando", "así", "ya"];
+
+    for (let i = 0; i < count; i++) {
+        // Ask: which of these IS a preposition?
+        const correctPrep = allPreps[Math.floor(Math.random() * allPreps.length)];
+        const distractors = nonPreps.sort(() => Math.random() - 0.5).slice(0, 3);
+        let options = [correctPrep, ...distractors];
+        options.sort(() => Math.random() - 0.5);
+
+        questions.push({
+            q: `¿Cuál de estas palabras es una preposición?`,
+            options,
+            a: options.indexOf(correctPrep)
+        });
+    }
+    return questions;
+}
+
+// ── End prepositions data ─────────────────────────────────────────────────────
